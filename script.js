@@ -3,25 +3,20 @@ function processArray(inputArray) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(inputArray);
-    }, 3000);
+    }, 1000);  // Changed from 3000 to 1000
   })
     .then((arr) => {
+      const evenNumbers = arr.filter(num => num % 2 === 0);
+      document.getElementById('output').textContent = evenNumbers.join(',');
       return new Promise((resolve) => {
-        const evenNumbers = arr.filter(num => num % 2 === 0);
         setTimeout(() => {
-          document.getElementById('output').textContent = evenNumbers.join(', ');
           resolve(evenNumbers);
-        }, 1000);
+        }, 2000);
       });
     })
     .then((evenArr) => {
-      return new Promise((resolve) => {
-        const multipliedNumbers = evenArr.map(num => num * 2);
-        setTimeout(() => {
-          document.getElementById('output').textContent = multipliedNumbers.join(', ');
-          resolve(multipliedNumbers);
-        }, 2000);
-      });
+      const multipliedNumbers = evenArr.map(num => num * 2);
+      document.getElementById('output').textContent = multipliedNumbers.join(',');
     });
 }
 
